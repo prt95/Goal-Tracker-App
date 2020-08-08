@@ -4,18 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.myplans.adapters.TaskListAdapter;
+import com.example.myplans.datastore.Task;
+import com.example.myplans.datastore.TaskDatabase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +28,20 @@ public class MainActivity extends AppCompatActivity {
 //        recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // specify an adapter (see also next example)
-        List<String> list = Arrays.asList("Hello1","Hello12","Hello13");
-        mAdapter = new TaskListAdapter(list);
-        recyclerView.setAdapter(mAdapter);
+        List<Task> tasksList = TaskDatabase.getInstance(getApplicationContext()).taskDao().getAll();
+        List<String> list = new ArrayList<>();
+        for(Task task: tasksList){
+            list.add(task.getName());
+        }
+        list.add("last");
+        recyclerView.setAdapter(new TaskListAdapter(list));
+    }
+
+    public void createTask(View v){
+        Intent intent = new Intent(this, CreateTaskActivity.class);
+        startActivity(intent);
     }
 }

@@ -12,7 +12,7 @@ import com.example.myplans.R;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
-    private List<String> mDataset;
+    private List<String> tasksList;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -28,7 +28,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public TaskListAdapter(List<String> myDataset) {
-        mDataset = myDataset;
+        tasksList = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
@@ -48,13 +48,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public void onBindViewHolder(TaskViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(mDataset.get(position));
+        holder.textView.setText(tasksList.get(position));
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return tasksList.size();
     }
 }
