@@ -1,9 +1,11 @@
-package com.example.myplans.datastore;
+package com.example.myplans.datastore.task;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.example.myplans.datastore.task.Task;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ public interface TaskDao {
     List<Task> getAll();
 
     @Query("SELECT * FROM task WHERE name IS :taskName")
-    List<Task> loadAllByIds(String taskName);
+    Task getTaskByName(String taskName);
 
 
     @Insert
@@ -22,5 +24,8 @@ public interface TaskDao {
 
     @Delete
     void delete(Task user);
+
+    @Query("DELETE FROM task")
+    void deleteAll();
 }
 

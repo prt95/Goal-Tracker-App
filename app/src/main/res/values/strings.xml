@@ -7,4 +7,6 @@
     <string name="hint_note">Add notes about the task</string>
     <string name="hint_goal_score">Enter value of goal</string>
     <string name="button_save">Save</string>
+    <string name="stats">Stats:</string>
+    <string name="clock">Reminder time:</string>
 </resources>

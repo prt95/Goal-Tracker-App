@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myplans.adapters.TaskListAdapter;
-import com.example.myplans.datastore.Task;
-import com.example.myplans.datastore.TaskDatabase;
+import com.example.myplans.datastore.task.Task;
+import com.example.myplans.datastore.task.TaskDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +38,19 @@ public class MainActivity extends AppCompatActivity {
         for(Task task: tasksList){
             list.add(task.getName());
         }
-        list.add("last");
         recyclerView.setAdapter(new TaskListAdapter(list));
     }
 
     public void createTask(View v){
         Intent intent = new Intent(this, CreateTaskActivity.class);
+        startActivity(intent);
+    }
+    public void showTask(View v){
+        String taskName = (String) ((TextView)v).getText();
+        Task task = TaskDatabase.getInstance(getApplicationContext()).taskDao().getTaskByName(taskName);
+
+        Intent intent = new Intent(this, TaskDetailActivity.class);
+        intent.putExtra("task", task);
         startActivity(intent);
     }
 }

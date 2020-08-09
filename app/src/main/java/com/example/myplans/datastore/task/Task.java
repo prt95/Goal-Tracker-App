@@ -1,12 +1,14 @@
-package com.example.myplans.datastore;
+package com.example.myplans.datastore.task;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Task {
+public class Task implements Serializable {
     @PrimaryKey
     @NonNull
     private String name;
@@ -17,6 +19,17 @@ public class Task {
     @ColumnInfo(name = "goal")
     private Integer goal;
 
+    @ColumnInfo(name = "reminder_time")
+    private Long reminderTime;
+
+
+    public Long getReminderTime() {
+        return reminderTime;
+    }
+
+    public void setReminderTime(Long reminderTime) {
+        this.reminderTime = reminderTime;
+    }
 
     public String getName() {
         return name;
