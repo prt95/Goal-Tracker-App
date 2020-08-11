@@ -1,14 +1,14 @@
 package com.example.myplans;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myplans.adapters.TaskListAdapter;
 import com.example.myplans.datastore.task.Task;
@@ -46,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void showTask(View v){
-        String taskName = (String) ((TextView)v).getText();
+        String taskName="";
+        if(v instanceof TextView)
+         taskName = (String) ((TextView)v).getText();
+        else
+           taskName= (String) ((TextView)((LinearLayout)v).getChildAt(0)).getText();
         Task task = TaskDatabase.getInstance(getApplicationContext()).taskDao().getTaskByName(taskName);
 
         Intent intent = new Intent(this, TaskDetailActivity.class);

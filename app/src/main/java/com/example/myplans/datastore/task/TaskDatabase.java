@@ -17,7 +17,7 @@ public abstract class TaskDatabase extends RoomDatabase {
         if (instance == null) {
             instance = create(context);
 //kept for testing purpose
-//            instance.taskDao().deleteAll();
+            instance.taskDao().deleteAll();
         }
         return instance;
     }

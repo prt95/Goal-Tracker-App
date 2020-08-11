@@ -14,7 +14,16 @@ public interface ScoreDao {
     List<Score> getAll();
 
     @Query("SELECT * FROM score WHERE name IS :taskName")
-    List<Score> loadAllByIds(String taskName);
+    List<Score> getScoreByName(String taskName);
+
+    @Query("SELECT * FROM score WHERE name IS :taskName and epoch between :epoch and :epoch+86400000")
+    Score getScoreForDay(String taskName, long epoch);
+
+    @Query("UPDATE score SET score=:score WHERE name IS :taskName and epoch IS :epoch")
+    void updateScore(String taskName, int score, long epoch);
+
+    @Query("SELECT * FROM score WHERE name IS :taskName and epoch between :startEpoch and :endEpoch")
+    List<Score> getScoresInRange(String taskName, long startEpoch, long endEpoch);
 
 
     @Insert
@@ -22,5 +31,8 @@ public interface ScoreDao {
 
     @Delete
     void delete(Score score);
+
+    @Query("DELETE FROM score")
+    void deleteAll();
 }
 

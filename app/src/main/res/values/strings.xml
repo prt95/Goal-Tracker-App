@@ -8,5 +8,13 @@
     <string name="hint_goal_score">Enter value of goal</string>
     <string name="button_save">Save</string>
     <string name="stats">Stats:</string>
-    <string name="clock">Reminder time:</string>
+    <string name="clock">Reminder:</string>
+    <string name="add_first">Keep quantitative measurements of your goals. Create a task for that goal
+        here and keep track of the achieved scores daily.
+        A consolidated place to track your goals.
+
+        <b>Create your first goal to start.</b> </string>
+
+
+
 </resources>

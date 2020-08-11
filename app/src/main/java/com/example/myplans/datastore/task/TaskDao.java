@@ -27,5 +27,9 @@ public interface TaskDao {
 
     @Query("DELETE FROM task")
     void deleteAll();
+
+    @Query("UPDATE task SET name=:newTaskName , notes=:notes , goal=:goal , reminder_time=:reminderTime WHERE name IS :taskName")
+    void update(String newTaskName, String notes, int goal, long reminderTime,String taskName);
+
 }
 

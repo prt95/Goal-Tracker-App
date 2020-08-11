@@ -5,15 +5,16 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(primaryKeys = {"name", "epoch"})
 public class Score {
-    @PrimaryKey
     @NonNull
     private String name;
 
-    @ColumnInfo(name = "date")
+    @NonNull
+    @ColumnInfo(name = "epoch")
     private Long epoch;
 
+    @NonNull
     @ColumnInfo(name = "score")
     private Integer score;
 
